@@ -79,9 +79,24 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Criar os 3 cards com os nomes específicos
         const cardTypes = [
-            { type: 'GRUPO DE TRADE', alt: 'CS2 Skin Trade', class: 'trade-type' },
-            { type: 'GRUPO DE PRÊMIOS', alt: 'CS2 Skin Prêmios', class: 'premios-type' },
-            { type: 'GRUPO DERESENHA', alt: 'CS2 Skin Resenha', class: 'resenha-type' }
+            { 
+                type: 'GRUPO DE TRADE', 
+                alt: 'CS2 Skin Trade', 
+                class: 'trade-type',
+                link: 'https://chat.whatsapp.com/EXW0oZujoCX6Hin9RmZE6g'
+            },
+            { 
+                type: 'GRUPO DE PRÊMIOS', 
+                alt: 'CS2 Skin Prêmios', 
+                class: 'premios-type',
+                link: 'https://chat.whatsapp.com/LwTCeWbwudv2KPh5nLbqme'
+            },
+            { 
+                type: 'GRUPO DE RESENHA', 
+                alt: 'CS2 Skin Resenha', 
+                class: 'resenha-type',
+                link: 'https://chat.whatsapp.com/K8bjskLCF9i2cHj5wXEvoe'
+            }
         ];
         
         // Criar o conjunto inicial de cards
@@ -94,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 <div class="skin-info">
                     <span class="skin-tag trades ${cardType.class}">${cardType.type}</span>
-                    <span class="skin-tag participate">PARTICIPE</span>
+                    <a href="${cardType.link}" target="_blank" class="skin-tag participate">PARTICIPE</a>
                 </div>
             `;
             skinsTrack.appendChild(card);
@@ -111,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <div class="skin-info">
                         <span class="skin-tag trades ${cardType.class}">${cardType.type}</span>
-                        <span class="skin-tag participate">PARTICIPE</span>
+                        <a href="${cardType.link}" target="_blank" class="skin-tag participate">PARTICIPE</a>
                     </div>
                 `;
                 skinsTrack.appendChild(card);
@@ -300,10 +315,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Ações interativas para os cards de skins
     document.querySelectorAll('.skin-tag.participate').forEach(button => {
-        button.addEventListener('click', function(e) {
+        button.removeEventListener('click', function(e) {
             e.preventDefault();
             alert('Você será redirecionado para o grupo de WhatsApp');
-            // Adicionar aqui o redirecionamento real para o grupo
         });
     });
 
@@ -315,22 +329,68 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Suaviza o scroll ao clicar em links internos
+    // Suaviza o scroll ao clicar em links internos e garante posicionamento preciso
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            
+
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
-            
+
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
-                targetElement.scrollIntoView({
+                // Adiciona classe ativa ao link clicado e remove dos outros
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Calcula a posição exata considerando o header fixo
+                const headerOffset = window.innerWidth <= 768 ? 85 : 120;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
                     behavior: 'smooth'
                 });
             }
         });
     });
+
+    // Atualiza o menu ativo durante a rolagem
+    function updateActiveMenu() {
+        const scrollPosition = window.scrollY;
+        
+        // Obtém todas as seções e seus offsets
+        const sections = document.querySelectorAll('section[id]');
+        const headerOffset = window.innerWidth <= 768 ? 85 : 120;
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - headerOffset - 5;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                // Remove a classe ativa de todos os links
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // Adiciona a classe ativa ao link correspondente
+                const activeLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            }
+        });
+    }
+
+    // Atualiza o menu ativo durante a rolagem
+    window.addEventListener('scroll', updateActiveMenu);
+    
+    // Executa uma vez ao carregar para definir o menu ativo inicial
+    updateActiveMenu();
 
     // Efeito nos cards de membros
     const memberNames = document.querySelectorAll('.member-name');

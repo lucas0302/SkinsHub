@@ -20,6 +20,8 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
 }
 
 body {
@@ -735,10 +737,15 @@ header {
     flex: 0 0 auto;
     min-width: 80px;
     text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .participate:hover {
     background-color: var(--light-red);
+    transform: translateY(-2px);
 }
 
 /* Remover animações específicas por tipo */
@@ -794,6 +801,7 @@ header {
 .members-carousel-container {
     width: 100%;
     overflow: hidden;
+    margin-top: 60px;
 }
 
 .members-track {
@@ -982,6 +990,7 @@ footer {
     background-color: var(--secondary-black);
     border-top: 1px solid var(--gold);
     padding: 60px 5% 20px;
+    scroll-snap-align: start;
 }
 
 .footer-content {
@@ -1296,7 +1305,7 @@ footer {
     }
     
     .skin-tag {
-        font-size: 1rem;
+        font-size: 0.9rem;
         padding: 10px 20px;
     }
     
@@ -1335,5 +1344,87 @@ footer {
         width: 45px;
         height: 45px;
         font-size: 1.1rem;
+    }
+}
+
+/* Ajustes para scroll-snap e posicionamento das seções */
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+}
+
+body {
+    background-color: var(--primary-black);
+    color: var(--white);
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+main {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Ajuste para todas as seções principais */
+section#hero,
+section#skins-carousel,
+section#characters {
+    scroll-snap-align: start;
+    scroll-margin-top: 120px; /* Ajuste para compensar a altura do header */
+    min-height: calc(100vh - 120px); /* Altura mínima para ocupar a tela inteira menos o header */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 120px; /* Espaço para o header fixo */
+    padding-bottom: 40px;
+    box-sizing: border-box;
+}
+
+/* Ajustes específicos para cada seção */
+section#hero {
+    min-height: 100vh; /* A hero pode ocupar a tela inteira */
+    padding-top: 120px;
+    padding-bottom: 0;
+}
+
+section#skins-carousel {
+    padding: 140px 2% 80px;
+}
+
+section#characters {
+    padding: 120px 5% 80px;
+}
+
+/* Ajuste para o footer */
+footer {
+    scroll-snap-align: start;
+}
+
+/* Ajustes para o header fixo */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: var(--primary-black);
+    padding: 0;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.7);
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    section#hero,
+    section#skins-carousel,
+    section#characters {
+        scroll-margin-top: 85px; /* Header menor em telas pequenas */
+        padding-top: 85px;
+    }
+    
+    section#skins-carousel {
+        padding: 100px 2% 60px;
     }
 } 
