@@ -289,6 +289,10 @@ header {
     margin: 0;
     position: relative;
     overflow: hidden;
+    background-image: url('../images/image.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .hero::before {
@@ -298,7 +302,7 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 30% 50%, rgba(20, 20, 20, 0.3), var(--primary-black) 70%);
+    background: rgba(0, 0, 0, 0.7);
     z-index: 1;
 }
 
@@ -332,12 +336,18 @@ header {
     font-size: 1.1rem;
     margin-bottom: 40px;
     color: var(--light-gray);
-    opacity: 0.9;
+    opacity: 0.8;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+#text-red {
+    color: var(--red);
 }
 
 .stats {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: rgba(0, 0, 0, 0.3);
     border: 1px solid var(--gold);
     border-radius: 5px;
@@ -393,7 +403,7 @@ header {
     flex: 1;
     display: flex;
     justify-content: flex-end;
-    max-width: 550px;
+    max-width: 450px;
 }
 
 .hero-image img {
@@ -419,6 +429,7 @@ header {
     position: relative;
     margin: 0;
     width: 100vw;
+    margin-top: -20px;
 }
 
 .crime-tape {
@@ -457,7 +468,6 @@ header {
 }
 
 .crime-tape::after {
-    content: 'ATENÇÃO • SKINS RARAS • ATENÇÃO • SKINS RARAS • ';
     position: absolute;
     top: 0;
     left: 0;
@@ -988,92 +998,15 @@ header {
 /* Footer */
 footer {
     background-color: var(--secondary-black);
-    border-top: 1px solid var(--gold);
-    padding: 60px 5% 20px;
     scroll-snap-align: start;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 40px;
-    max-width: 1400px;
-    margin: 0 auto 40px;
-}
-
-.footer-section {
-    flex: 1;
-    min-width: 250px;
-}
-
-.footer-section h3 {
-    color: var(--gold);
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    position: relative;
-}
-
-.footer-section h3::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -8px;
-    width: 50px;
-    height: 2px;
-    background-color: var(--red);
-}
-
-.footer-section p {
-    color: var(--light-gray);
-    line-height: 1.6;
-}
-
-.footer-section ul {
-    list-style: none;
-}
-
-.footer-section ul li {
-    margin-bottom: 10px;
-}
-
-.footer-section ul li a {
-    color: var(--light-gray);
-    transition: all 0.3s ease;
-}
-
-.footer-section ul li a:hover {
-    color: var(--gold);
-    padding-left: 5px;
-}
-
-.whatsapp-button {
-    display: inline-block;
-    background-color: var(--gold);
-    color: var(--primary-black);
-    padding: 12px 25px;
-    border-radius: 30px;
-    margin-top: 15px;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.whatsapp-button i {
-    margin-left: 8px;
-}
-
-.whatsapp-button:hover {
-    background-color: var(--red);
-    color: var(--white);
-    transform: translateY(-5px);
 }
 
 .footer-bottom {
     text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid rgba(212, 175, 55, 0.3);
-    color: var(--light-gray);
-    font-size: 0.9rem;
+    padding: 10px 0;
+    border-top: 1px solid var(--gold);
 }
 
 /* Animações adicionais */
@@ -1094,7 +1027,7 @@ footer {
 }
 
 .skin-tag.participate:hover {
-    animation: pulse 1.5s infinite;
+    transform: scale(1.1);
 }
 
 /* Responsividade */
@@ -1102,21 +1035,19 @@ footer {
     .hero-inner {
         flex-direction: column;
         text-align: center;
-        padding-top: 0;
     }
-    
+
     .hero-content {
         padding-right: 0;
-        margin-bottom: 40px;
-        max-width: 100%;
+        margin-bottom: 30px;
     }
-    
+
     .stats {
-        justify-content: center;
+        margin: 0 auto;
     }
-    
+
     .hero p {
-        margin: 0 auto 40px;
+        font-size: 1rem;
     }
 
     .hero-image {
@@ -1130,10 +1061,28 @@ footer {
 
     .character-container {
         flex-direction: column;
+        align-items: center;
+    }
+
+    .character {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .trades {
+        margin-bottom: 3px;
+    }
+
+    .hero-image {
+        max-width: 90%;
     }
     
-    .character {
-        margin-bottom: 30px;
+    .hero-image img {
+        transform: scale(1);
+    }
+
+    .trades {
+        font-size: 0.8rem;
     }
 }
 
@@ -1209,12 +1158,8 @@ footer {
         margin-bottom: 3px;
     }
 
-    .hero-image {
-        max-width: 90%;
-    }
-    
-    .hero-image img {
-        transform: scale(1);
+    .trades {
+        font-size: 0.8rem;
     }
 }
 
