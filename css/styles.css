@@ -289,7 +289,7 @@ header {
     margin: 0;
     position: relative;
     overflow: hidden;
-    background-image: url('../images/image.png');
+    background-image: url('../images/backgrond.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -440,7 +440,7 @@ header {
         var(--gold),
         var(--gold) 10px,
         var(--primary-black) 10px,
-        var(--primary-black) 20px
+        var(--gold) 20px
     );
     display: flex;
     align-items: center;
