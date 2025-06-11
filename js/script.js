@@ -2,20 +2,36 @@ document.addEventListener('DOMContentLoaded', function() {
     // Menu mobile
     const hamburger = document.querySelector('.hamburger');
     const navContainer = document.querySelector('.nav-container');
+    const navOverlay = document.querySelector('.nav-overlay');
+    const body = document.body;
+
+    function toggleMenu() {
+        hamburger.classList.toggle('active');
+        navContainer.classList.toggle('active');
+        navOverlay.classList.toggle('active');
+        body.style.overflow = body.style.overflow === 'hidden' ? '' : 'hidden';
+    }
 
     if (hamburger) {
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            navContainer.classList.toggle('active');
-        });
+        hamburger.addEventListener('click', toggleMenu);
+    }
+
+    if (navOverlay) {
+        navOverlay.addEventListener('click', toggleMenu);
     }
 
     // Fechar menu ao clicar em um link
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navContainer.classList.remove('active');
+            toggleMenu();
         });
+    });
+
+    // Fechar menu ao pressionar ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navContainer.classList.contains('active')) {
+            toggleMenu();
+        }
     });
 
     // Faixa de contenção (crime tape)
