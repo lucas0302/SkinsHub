@@ -366,7 +366,7 @@ header {
         transition: all 0.3s ease;
         z-index: 1000;
     }
-
+    
     .nav-overlay.active {
         opacity: 1;
         visibility: visible;
@@ -1253,7 +1253,7 @@ footer {
     }
     
     .stats {
-        flex-direction: row;
+        flex-direction: column;
         padding: 15px;
     }
     
@@ -1671,7 +1671,6 @@ header {
 }
 
 .timeline-item {
-    margin-bottom: 100px;
     position: relative;
 }
 
