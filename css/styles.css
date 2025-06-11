@@ -1763,56 +1763,42 @@ header {
 
 .timeline-icon {
     text-align: center;
-    margin-bottom: 20px;
-    position: relative;
-}
-
-.timeline-icon::after {
-    content: '';
-    position: absolute;
-    width: 60px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #FFD700, transparent);
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+    background: rgba(255, 23, 68, 0.05);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 23, 68, 0.2);
+    cursor: pointer;
 }
 
 .timeline-icon i {
-    font-size: 3rem;
+    font-size: 2.5rem;
     background: linear-gradient(135deg, var(--accent-red), #58B1FF);
+    background-clip: text;
     -webkit-background-clip: text;
+    color: transparent;
     -webkit-text-fill-color: transparent;
-    width: 80px;
-    height: 80px;
-    line-height: 80px;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    position: relative;
+    transition: transform 0.5s ease;
 }
 
-.timeline-icon i::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 23, 68, 0.05);
-    border-radius: 50%;
-    border: 1px solid rgba(255, 23, 68, 0.2);
-    z-index: -1;
+.timeline-icon:hover i {
+    transform: rotate(-360deg);
+    transition: transform 0.5s ease;
 }
 
-.timeline-card:hover .timeline-icon i {
-    transform: scale(1.1) rotate(360deg);
-}
-
-.timeline-card:hover .timeline-icon i::after {
-    background: rgba(255, 23, 68, 0.1);
+/* Removendo animações antigas */
+.timeline-card:hover {
+    transform: translateY(-5px);
+    background: rgba(88, 177, 255, 0.05);
+    border: 1px solid var(--accent-red);
     box-shadow: 
-        0 0 20px rgba(88, 177, 255, 0.3),
-        0 0 40px rgba(255, 23, 68, 0.2);
+        0 10px 20px rgba(0, 0, 0, 0.3),
+        0 0 30px rgba(88, 177, 255, 0.1),
+        0 0 50px rgba(255, 23, 68, 0.1);
 }
 
 .timeline-card h3 {
