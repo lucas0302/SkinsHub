@@ -94,24 +94,27 @@ document.addEventListener('DOMContentLoaded', function() {
         skinsTrack.innerHTML = '';
         
         // Criar os 3 cards com os nomes específicos
-        const cardTypes = [
+                    const cardTypes = [
             { 
                 type: 'GRUPO DE TRADE', 
                 alt: 'CS2 Skin Trade', 
                 class: 'trade-type',
-                link: 'https://chat.whatsapp.com/EXW0oZujoCX6Hin9RmZE6g'
+                link: 'https://chat.whatsapp.com/EXW0oZujoCX6Hin9RmZE6g',
+                image: 'images/trade.png'
             },
             { 
                 type: 'GRUPO DE PRÊMIOS', 
                 alt: 'CS2 Skin Prêmios', 
                 class: 'premios-type',
-                link: 'https://chat.whatsapp.com/LwTCeWbwudv2KPh5nLbqme'
+                link: 'https://chat.whatsapp.com/LwTCeWbwudv2KPh5nLbqme',
+                image: 'images/premios.png'
             },
             { 
                 type: 'GRUPO DE RESENHA', 
                 alt: 'CS2 Skin Resenha', 
                 class: 'resenha-type',
-                link: 'https://chat.whatsapp.com/K8bjskLCF9i2cHj5wXEvoe'
+                link: 'https://chat.whatsapp.com/K8bjskLCF9i2cHj5wXEvoe',
+                image: 'images/resenha.png'
             }
         ];
         
@@ -121,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
             card.className = 'skin-card';
             card.innerHTML = `
                 <div class="skin-image">
-                    <img src="images/card.png" alt="${cardType.alt}">
+                    <img src="${cardType.image}" alt="${cardType.alt}">
                 </div>
                 <div class="skin-info">
                     <span class="skin-tag trades ${cardType.class}">${cardType.type}</span>
@@ -138,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 card.className = 'skin-card';
                 card.innerHTML = `
                     <div class="skin-image">
-                        <img src="images/card.png" alt="${cardType.alt}">
+                        <img src="${cardType.image}" alt="${cardType.alt}">
                     </div>
                     <div class="skin-info">
                         <span class="skin-tag trades ${cardType.class}">${cardType.type}</span>
